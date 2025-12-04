@@ -218,7 +218,7 @@ body {
 }
 
 /* ================================================== */
-/* ===== Game Screen - New Design ===== */
+/* ===== Game Screen - Two Column Layout ===== */
 /* ================================================== */
 
 #game-screen {
@@ -226,7 +226,7 @@ body {
     flex-direction: column;
     flex-grow: 1;
     background-color: #1a1a2e;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 /* Game Header */
@@ -234,7 +234,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 15px;
+    padding: 10px 15px;
     background-color: #1a1a2e;
     border-bottom: 1px solid #333;
     flex-shrink: 0;
@@ -263,31 +263,34 @@ body {
     cursor: pointer;
 }
 
-/* Game Main Content */
-.game-main-content {
+/* Two Column Game Layout */
+.game-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
     flex-grow: 1;
     padding: 10px;
+    overflow: hidden;
+    min-height: 0;
+}
+
+/* Left Column - Master Grid */
+.left-column {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    overflow-y: auto;
+    overflow: hidden;
+    min-height: 0;
 }
 
-/* Top Row - Master Grid and Call Display */
-.game-top-row {
-    display: flex;
-    gap: 15px;
-    flex-shrink: 0;
-}
-
-/* Master Grid Section */
 .master-grid-section {
-    flex: 1;
     display: flex;
     flex-direction: column;
     background-color: #2a2a3a;
     border-radius: 10px;
     padding: 8px;
+    flex-grow: 1;
+    overflow: hidden;
+    min-height: 0;
 }
 
 .bingo-headers {
@@ -295,19 +298,20 @@ body {
     grid-template-columns: repeat(5, 1fr);
     gap: 3px;
     margin-bottom: 5px;
+    flex-shrink: 0;
 }
 
 .bingo-header-circle {
     width: 100%;
     aspect-ratio: 1;
-    max-width: 35px;
+    max-width: 32px;
     margin: 0 auto;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 0.9em;
+    font-size: 0.85em;
     color: #fff;
 }
 
@@ -323,6 +327,7 @@ body {
     grid-template-rows: repeat(15, 1fr);
     gap: 2px;
     flex-grow: 1;
+    min-height: 0;
 }
 
 .master-cell {
@@ -330,12 +335,11 @@ body {
     color: #333;
     border-radius: 3px;
     text-align: center;
-    font-size: 0.75em;
+    font-size: 0.7em;
     font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 18px;
 }
 
 .master-cell.called {
@@ -344,18 +348,25 @@ body {
     font-weight: bold;
 }
 
-/* Call Display Section */
-.call-display-section {
+/* Right Column - Call Display, History, Player Card, Bingo Button */
+.right-column {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    padding: 10px;
+    gap: 10px;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+/* Call Display */
+.call-display-section {
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 .current-call-circle {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     background-color: transparent;
     border: 4px solid #3498db;
     border-radius: 50%;
@@ -367,31 +378,34 @@ body {
 }
 
 .call-letter {
-    font-size: 0.9em;
+    font-size: 0.85em;
     font-weight: bold;
 }
 
 .call-number {
-    font-size: 1.4em;
+    font-size: 1.3em;
     font-weight: bold;
 }
 
+/* Call History */
 .call-history {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
     justify-content: center;
+    flex-shrink: 0;
+    padding: 5px 0;
 }
 
 .history-item {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 0.7em;
+    font-size: 0.6em;
     font-weight: bold;
     color: #fff;
 }
@@ -408,14 +422,15 @@ body {
     border-radius: 10px;
     padding: 10px;
     position: relative;
+    flex-shrink: 0;
 }
 
 .your-cards-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
-    font-size: 0.95em;
+    margin-bottom: 8px;
+    font-size: 0.9em;
     color: #ccc;
 }
 
@@ -435,7 +450,7 @@ body {
     display: none;
     align-items: center;
     justify-content: center;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: bold;
     border-radius: 10px;
     z-index: 10;
@@ -444,34 +459,34 @@ body {
 .player-card-wrapper {
     background-color: #3a3a4a;
     border-radius: 8px;
-    padding: 10px;
+    padding: 8px;
 }
 
 .card-number-title {
     text-align: center;
     font-weight: bold;
     color: #fff;
-    margin-bottom: 8px;
-    font-size: 0.95em;
+    margin-bottom: 6px;
+    font-size: 0.85em;
 }
 
 .player-bingo-headers {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 5px;
-    margin-bottom: 5px;
+    gap: 4px;
+    margin-bottom: 4px;
 }
 
 .player-header-circle {
-    width: 35px;
-    height: 35px;
+    width: 28px;
+    height: 28px;
     margin: 0 auto;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 1em;
+    font-size: 0.85em;
     color: #fff;
 }
 
@@ -479,7 +494,7 @@ body {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    gap: 4px;
+    gap: 3px;
 }
 
 .player-cell {
@@ -487,12 +502,12 @@ body {
     color: #fff;
     border-radius: 4px;
     text-align: center;
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight: 600;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 5px;
+    padding: 8px 4px;
     cursor: pointer;
     transition: all 0.2s;
 }
@@ -515,22 +530,22 @@ body {
 
 /* Bingo Button Section */
 .bingo-button-section {
-    margin-top: 12px;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .bingo-main-btn {
     width: 100%;
-    padding: 12px;
-    font-size: 1.3em;
+    padding: 10px;
+    font-size: 1.1em;
     font-weight: bold;
     color: #333;
     background-color: var(--color-accent);
     border: none;
-    border-radius: 25px;
+    border-radius: 20px;
     cursor: pointer;
 }
 
@@ -538,13 +553,13 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.85em;
+    font-size: 0.8em;
     color: #aaa;
 }
 
 .status-dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
 }
 
@@ -586,37 +601,61 @@ body {
 }
 
 /* ================================================== */
-/* ===== Mobile Responsive ===== */
+/* ===== Mobile Responsive - Stack Vertically ===== */
 /* ================================================== */
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
+    .game-content-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        overflow-y: auto;
+    }
+    
+    .left-column {
+        order: 2;
+    }
+    
+    .right-column {
+        order: 1;
+        overflow: visible;
+    }
+    
+    .master-grid-section {
+        min-height: 280px;
+    }
+    
     .master-cell {
         font-size: 0.65em;
-        min-height: 16px;
     }
     
     .bingo-header-circle {
-        max-width: 28px;
-        font-size: 0.8em;
+        max-width: 26px;
+        font-size: 0.75em;
     }
     
     .player-header-circle {
-        width: 28px;
-        height: 28px;
-        font-size: 0.85em;
+        width: 24px;
+        height: 24px;
+        font-size: 0.75em;
     }
     
     .player-cell {
-        font-size: 0.95em;
-        padding: 8px 4px;
+        font-size: 0.9em;
+        padding: 6px 3px;
     }
     
     .current-call-circle {
-        width: 65px;
-        height: 65px;
+        width: 60px;
+        height: 60px;
     }
     
     .call-number {
-        font-size: 1.2em;
+        font-size: 1.1em;
+    }
+    
+    .history-item {
+        width: 32px;
+        height: 32px;
+        font-size: 0.55em;
     }
 }

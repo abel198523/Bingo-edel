@@ -44,7 +44,7 @@
             </div>
 
             <div id="card-selection-grid" class="card-selection-grid">
-                </div>
+            </div>
             
             <div id="confirmation-status" class="confirmation-status">ካርድ ይምረጡና አረጋግጡ</div>
             
@@ -73,9 +73,9 @@
                 </span>
             </div>
 
-            <div class="game-main-content">
+            <div class="game-content-grid">
                 
-                <div class="game-top-row">
+                <div class="left-column">
                     <div class="master-grid-section">
                         <div class="bingo-headers">
                             <div class="bingo-header-circle b-header">B</div>
@@ -87,48 +87,52 @@
                         <div id="master-grid" class="master-grid">
                         </div>
                     </div>
+                </div>
 
+                <div class="right-column">
+                    
                     <div class="call-display-section">
                         <div class="current-call-circle" id="current-call">
                             <span class="call-letter" id="call-letter"></span>
                             <span class="call-number" id="call-number">--</span>
                         </div>
-                        
-                        <div class="call-history" id="call-history">
-                        </div>
                     </div>
-                </div>
+                    
+                    <div class="call-history" id="call-history">
+                    </div>
 
-                <div class="player-card-section">
-                    <div class="your-cards-header">
-                        <span>Your Cards</span>
-                        <span class="card-count">1</span>
-                    </div>
-                    
-                    <div id="watch-only-placard" class="watch-only-placard">
-                        WATCH ONLY
-                    </div>
-                    
-                    <div class="player-card-wrapper">
-                        <div class="card-number-title" id="card-number-title">Card Number --</div>
-                        <div class="player-bingo-headers">
-                            <div class="player-header-circle b-header">B</div>
-                            <div class="player-header-circle i-header">I</div>
-                            <div class="player-header-circle n-header">N</div>
-                            <div class="player-header-circle g-header">G</div>
-                            <div class="player-header-circle o-header">O</div>
+                    <div class="player-card-section">
+                        <div class="your-cards-header">
+                            <span>Your Cards</span>
+                            <span class="card-count">1</span>
                         </div>
-                        <div id="player-bingo-card" class="bingo-card-player">
+                        
+                        <div id="watch-only-placard" class="watch-only-placard">
+                            WATCH ONLY
+                        </div>
+                        
+                        <div class="player-card-wrapper">
+                            <div class="card-number-title" id="card-number-title">Card Number --</div>
+                            <div class="player-bingo-headers">
+                                <div class="player-header-circle b-header">B</div>
+                                <div class="player-header-circle i-header">I</div>
+                                <div class="player-header-circle n-header">N</div>
+                                <div class="player-header-circle g-header">G</div>
+                                <div class="player-header-circle o-header">O</div>
+                            </div>
+                            <div id="player-bingo-card" class="bingo-card-player">
+                            </div>
+                        </div>
+                        
+                        <div class="bingo-button-section">
+                            <button class="bingo-main-btn" id="bingo-btn">Bingo</button>
+                            <div class="connection-status">
+                                <span class="status-dot connected"></span>
+                                <span>Connected</span>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="bingo-button-section">
-                        <button class="bingo-main-btn" id="bingo-btn">Bingo</button>
-                        <div class="connection-status">
-                            <span class="status-dot connected"></span>
-                            <span>Connected</span>
-                        </div>
-                    </div>
+
                 </div>
 
             </div>
