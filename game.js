@@ -84,7 +84,7 @@ function initializeSelectionGrid() {
     
     grid.innerHTML = '';
     
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 1; i <= 99; i++) {
         const cell = document.createElement('div');
         cell.className = 'card-select-cell';
         cell.textContent = i;
@@ -278,7 +278,7 @@ function initializeMasterGrid() {
     updateCallHistory();
 }
 
-// Generate a random bingo card or show Watch Only
+// Generate player card from fixed cards data
 function generatePlayerCard(cardId = null) {
     const playerCardEl = document.getElementById('player-bingo-card');
     const watchPlacard = document.getElementById('watch-only-placard');
@@ -298,13 +298,12 @@ function generatePlayerCard(cardId = null) {
     
     cardTitle.textContent = `Card Number ${cardId}`;
     
-    const columns = [
-        generateColumn(1, 15),   // B
-        generateColumn(16, 30),  // I
-        generateColumn(31, 45),  // N
-        generateColumn(46, 60),  // G
-        generateColumn(61, 75)   // O
-    ];
+    // Get the fixed card data for this cardId
+    const cardData = BINGO_CARDS[cardId];
+    if (!cardData) {
+        console.error('Card not found:', cardId);
+        return;
+    }
     
     const colLetters = ['b', 'i', 'n', 'g', 'o'];
     
@@ -313,13 +312,15 @@ function generatePlayerCard(cardId = null) {
             const cell = document.createElement('div');
             cell.className = `player-cell col-${colLetters[col]}`;
             
-            if (row === 2 && col === 2) {
+            const number = cardData[row][col];
+            
+            if (number === 0) {
+                // FREE space (center)
                 cell.textContent = 'F';
                 cell.classList.add('free-space', 'marked');
                 cell.dataset.number = 'free';
                 markedCells.add('free');
             } else {
-                const number = columns[col][row];
                 cell.textContent = number;
                 cell.dataset.number = number;
                 playerCard.push(number);
@@ -332,22 +333,6 @@ function generatePlayerCard(cardId = null) {
             playerCardEl.appendChild(cell);
         }
     }
-}
-
-// Generate random numbers for a column
-function generateColumn(min, max) {
-    const numbers = [];
-    const available = [];
-    for (let i = min; i <= max; i++) {
-        available.push(i);
-    }
-    
-    for (let i = 0; i < 5; i++) {
-        const randomIndex = Math.floor(Math.random() * available.length);
-        numbers.push(available[randomIndex]);
-        available.splice(randomIndex, 1);
-    }
-    return numbers;
 }
 
 // Toggle cell marking
