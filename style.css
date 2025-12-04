@@ -1,1 +1,506 @@
-የከከየጠጠ
+
+/* style.css (የተዋሃደ: Landing, Selection, እና Game Layouts) */
+
+:root {
+    --color-bg-dark: #12121e;
+    --color-block-dark: #2c293d;
+    --color-accent: #ffc107;
+    --color-text-light: #f4f4f9;
+    --color-red-mark: #d9534f; 
+    --color-blue-dark: #5c596e; 
+    --color-play-btn: #28a745; 
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-light);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    box-sizing: border-box;
+    overflow: hidden; 
+}
+
+.main-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
+}
+
+/* ================================================== */
+/* ===== 0. የመግቢያ ስክሪን (Landing Screen CSS) ===== */
+/* ================================================== */
+
+#landing-screen {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #1a1a2e; 
+    text-align: center;
+}
+
+.welcome-box {
+    background-color: var(--color-block-dark);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    width: 90%;
+    max-width: 400px;
+}
+
+.welcome-box h1 {
+    color: var(--color-accent);
+    margin-bottom: 5px;
+}
+.welcome-box h2 {
+    font-size: 1.2em;
+    color: #ccc;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.stake-btn {
+    background-color: #444;
+    color: var(--color-text-light);
+    border: 2px solid #666;
+    padding: 8px 15px;
+    margin: 0 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.stake-btn.active-stake {
+    background-color: var(--color-accent);
+    color: var(--color-block-dark);
+}
+
+.play-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--color-text-light);
+    background-color: var(--color-play-btn);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+
+/* ================================================== */
+/* ===== 1. የካርድ መምረጫ ስክሪን (Selection Screen CSS) ===== */
+/* ================================================== */
+
+#selection-screen {
+    display: none; 
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 5px;
+    box-sizing: border-box;
+    background-color: #1a1a2e; 
+}
+
+/* ራስጌ (Wallet, Stake, Time) */
+.selection-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: var(--color-blue-dark);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+}
+
+.header-info .value {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--color-accent);
+}
+
+.time-counter .time-value {
+    background-color: var(--color-red-mark);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.1em;
+}
+
+/* 10x10 የካርድ መምረጫ ግሪድ */
+.card-selection-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); 
+    grid-template-rows: repeat(10, 1fr);
+    gap: 8px;
+    flex-grow: 1;
+    padding: 5px;
+    background-color: var(--color-block-dark);
+    border-radius: 8px;
+    overflow-y: auto; 
+    max-height: 50vh; 
+}
+
+.card-select-cell {
+    background-color: #3e3e3e;
+    color: var(--color-text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    aspect-ratio: 1 / 1; 
+    transition: background-color 0.15s;
+}
+
+.card-select-cell.taken {
+    background-color: var(--color-red-mark); 
+    color: white;
+    cursor: not-allowed;
+}
+
+.card-select-cell.selected {
+    background-color: var(--color-accent); 
+    color: var(--color-block-dark);
+}
+
+/* Confirm Button Style */
+.selection-action-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--color-block-dark);
+    background-color: var(--color-accent); 
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.2s;
+}
+
+.selection-action-btn:disabled {
+    background-color: #5c596e;
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Confirmation Status */
+.confirmation-status {
+    text-align: center;
+    color: var(--color-accent);
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 0.9em;
+    min-height: 20px;
+}
+
+.selection-footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    margin-top: 10px;
+    background-color: var(--color-blue-dark);
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+/* ================================================== */
+/* ===== 2. ዋናው የጨዋታ ስክሪን (Game Screen CSS) - ዲዛይኑን በትክክል የሚያንፀባርቅ ===== */
+/* ================================================== */
+
+#game-screen {
+    display: none; 
+    padding: 10px; 
+    box-sizing: border-box;
+    flex-grow: 1; 
+}
+
+/* ===== ዋናው የጨዋታ አካል (2 Column Layout) ===== */
+.game-area-grid {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between; 
+    gap: 15px; 
+    flex-grow: 1; 
+    height: 100%; 
+    max-height: 100%;
+}
+
+/* ግራ እና ቀኝ ዋና ብሎኮች */
+.left-main-area {
+    width: 48%; 
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.right-main-area {
+    width: 48%; 
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+/* ===== የግራ አካል ንጥረ ነገሮች (Master Grid) ===== */
+
+/* አዲስ ካርድ (Header) */
+.top-round-btn {
+    /* "አዲስ ካርድ" የራስጌ ስታይል */
+    padding: 8px 10px;
+    background-color: var(--color-block-dark);
+    border: 3px solid var(--color-red-mark); 
+    border-radius: 15px; 
+    text-align: center;
+    font-size: 1.0em;
+    font-weight: bold;
+    color: var(--color-text-light);
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+/* Master Grid Container */
+.master-grid-container {
+    background-color: var(--color-block-dark);
+    border: 3px solid var(--color-red-mark);
+    border-radius: 20px;
+    flex: 1 1 0; 
+    min-height: 0; 
+    padding: 8px; 
+    display: flex;
+}
+
+/* Master Grid 5x15 Structure */
+.master-grid {
+    display: grid; 
+    grid-template-columns: repeat(5, 1fr); /* 5 ዓምዶች */
+    grid-template-rows: repeat(15, 1fr); /* 15 ረድፎች */
+    gap: 4px; 
+    flex-grow: 1; 
+    overflow: hidden; 
+    background-color: var(--color-block-dark);
+    height: 100%; 
+}
+
+.master-cell {
+    background-color: #1f1c2c;
+    color: #fff;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 0.8em; 
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* ቁመቱ በgrid-template-rows ስለሚወሰን aspect-ratio አያስፈልግም, ነገር ግን የ Master Grid ሴሎች ትክክለኛውን ቦታ እንዲይዙ ያረጋግጡ */
+.master-cell.called {
+    background-color: var(--color-accent);
+    color: var(--color-bg-dark);
+    font-weight: bold;
+}
+
+.mid-round-btn {
+    /* Refresh Button */
+    padding: 8px;
+    background-color: var(--color-block-dark);
+    border: 3px solid var(--color-red-mark);
+    border-radius: 15px;
+    text-align: center;
+    font-size: 1.0em;
+    font-weight: bold;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+
+/* ===== የቀኝ አካል ንጥረ ነገሮች (Player Card) ===== */
+
+/* Call Display Area (Call Circle + History) */
+.current-call-display {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.top-call-circle {
+    width: 60px; 
+    height: 60px; 
+    background-color: var(--color-block-dark);
+    border: 3px solid var(--color-red-mark);
+    border-radius: 50%; 
+    font-size: 1.2em; 
+    font-weight: bold;
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: default;
+}
+
+.call-history {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+    flex-shrink: 0;
+}
+
+.history-item {
+    width: 45px;
+    height: 45px;
+    background-color: var(--color-block-dark);
+    border: 3px solid var(--color-red-mark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.0em;
+    font-weight: bold;
+    color: var(--color-accent);
+}
+
+/* Player Card Container */
+.player-card-container {
+    background-color: var(--color-block-dark);
+    border: 3px solid var(--color-red-mark);
+    border-radius: 20px;
+    flex: 1 1 0; /* የቀረውን ቁመት ይወስዳል */
+    min-height: 0;
+    padding: 8px; 
+    position: relative; 
+}
+
+/* Watch Only Placard */
+.watch-only-placard {
+    background-color: rgba(44, 41, 61, 0.9); 
+    color: var(--color-accent);
+    display: none; 
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    border: 3px solid var(--color-red-mark);
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+/* Player BINGO Card (5x5) */
+.bingo-card-player {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr); /* 1 ለራስጌ + 5 ለካርድ */
+    gap: 3px; 
+    background-color: #12121e;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+.header {
+    font-size: 0.9em; 
+    background-color: var(--color-blue-dark); 
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cell {
+    font-size: 1.2em; 
+    background-color: #1f1c2c;
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.cell.marked {
+    background-color: var(--color-accent);
+    color: var(--color-bg-dark);
+    font-weight: bold;
+}
+.cell.free-space {
+    background-color: var(--color-accent); 
+    color: var(--color-bg-dark);
+    cursor: default;
+}
+
+.bottom-btn {
+    /* BINGO Button */
+    padding: 12px 8px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 15px;
+    border: 3px solid var(--color-red-mark);
+    flex-shrink: 0; 
+    cursor: pointer;
+}
+.bingo-btn-placeholder {
+    background-color: var(--color-accent); 
+    color: var(--color-bg-dark);
+}
+
+/* Mobile Responsive Adjustments (<= 600px) */
+@media (max-width: 600px) {
+    .game-area-grid {
+        flex-direction: column; 
+        gap: 10px;
+        height: auto; 
+        max-height: none;
+        overflow-y: auto; 
+    }
+    .left-main-area, .right-main-area {
+        width: 100%; 
+        height: auto;
+    }
+    .master-grid-container {
+        height: 350px; 
+        flex: 0 0 auto;
+    }
+    .player-card-container {
+        height: 300px;
+        flex: 0 0 auto;
+    }
+    .top-call-circle {
+        width: 50px; 
+        height: 50px; 
+        font-size: 1.0em; 
+    }
+    .history-item {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9em;
+    }
+}
