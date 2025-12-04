@@ -1,5 +1,5 @@
 
-/* style.css - Chewatabingo New Design */
+/* style.css - Chewatabingo - No Scroll Layout */
 
 :root {
     --color-bg-dark: #1a1a2e;
@@ -11,19 +11,18 @@
     --color-yellow: #f1c40f;
     --color-green: #27ae60;
     --color-blue: #3498db;
-    --color-gray: #95a5a6;
 }
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body {
+html, body {
     font-family: Arial, sans-serif;
     background-color: var(--color-bg-dark);
     color: var(--color-text-light);
-    margin: 0;
-    padding: 0;
     width: 100%;
     height: 100vh;
     height: 100dvh;
@@ -32,10 +31,11 @@ body {
 
 .main-wrapper {
     width: 100%;
-    display: flex;
-    flex-direction: column;
     height: 100vh;
     height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 /* ================================================== */
@@ -47,7 +47,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-grow: 1;
+    flex: 1;
     padding: 20px;
     background-color: var(--color-bg-dark);
     text-align: center;
@@ -111,9 +111,10 @@ body {
 #selection-screen {
     display: none;
     flex-direction: column;
-    flex-grow: 1;
+    flex: 1;
     padding: 5px;
     background-color: var(--color-bg-dark);
+    overflow: hidden;
 }
 
 .selection-header {
@@ -143,14 +144,12 @@ body {
 .card-selection-grid {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(10, 1fr);
-    gap: 8px;
-    flex-grow: 1;
+    gap: 6px;
+    flex: 1;
     padding: 5px;
     background-color: var(--color-block-dark);
     border-radius: 8px;
     overflow-y: auto;
-    max-height: 50vh;
 }
 
 .card-select-cell {
@@ -159,7 +158,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1em;
+    font-size: clamp(0.7em, 2.5vw, 1.1em);
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
@@ -188,8 +187,8 @@ body {
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    margin-top: 15px;
-    transition: background-color 0.2s;
+    margin-top: 10px;
+    flex-shrink: 0;
 }
 
 .selection-action-btn:disabled {
@@ -202,9 +201,9 @@ body {
     text-align: center;
     color: var(--color-accent);
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: 8px;
     font-size: 0.9em;
-    min-height: 20px;
+    flex-shrink: 0;
 }
 
 .selection-footer {
@@ -218,101 +217,101 @@ body {
 }
 
 /* ================================================== */
-/* ===== Game Screen - Two Column Layout ===== */
+/* ===== Game Screen - Fixed Two Column Layout ===== */
 /* ================================================== */
 
 #game-screen {
     display: none;
     flex-direction: column;
-    flex: 1;
+    height: 100vh;
+    height: 100dvh;
     background-color: #1a1a2e;
     overflow: hidden;
-    height: 100%;
 }
 
-/* Game Header */
+/* Game Header - Compact */
 .game-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 15px;
+    padding: 6px 10px;
     background-color: #1a1a2e;
     border-bottom: 1px solid #333;
     flex-shrink: 0;
+    height: 40px;
 }
 
 .close-btn {
-    font-size: 1.8em;
+    font-size: 1.5em;
     color: #fff;
     cursor: pointer;
 }
 
 .game-title {
-    font-size: 1.3em;
+    font-size: 1.1em;
     font-weight: bold;
     color: #fff;
 }
 
 .header-icons {
     display: flex;
-    gap: 15px;
+    gap: 12px;
 }
 
 .dropdown-icon, .menu-icon {
-    font-size: 1.5em;
+    font-size: 1.3em;
     color: #fff;
     cursor: pointer;
 }
 
-/* Two Column Game Layout */
+/* Two Column Grid - NO SCROLL */
 .game-content-grid {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 8px;
     flex: 1;
-    padding: 10px;
+    padding: 6px;
+    min-height: 0;
     overflow: hidden;
-    height: calc(100% - 110px);
 }
 
 /* Left Column - Master Grid */
 .left-column {
-    flex: 1;
     display: flex;
     flex-direction: column;
-    min-width: 0;
-    height: 100%;
+    min-height: 0;
+    overflow: hidden;
 }
 
 .master-grid-section {
     display: flex;
     flex-direction: column;
     background-color: #2a2a3a;
-    border-radius: 10px;
-    padding: 8px;
+    border-radius: 8px;
+    padding: 4px;
     height: 100%;
+    min-height: 0;
     overflow: hidden;
 }
 
 .bingo-headers {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 3px;
-    margin-bottom: 5px;
+    gap: 2px;
+    margin-bottom: 3px;
     flex-shrink: 0;
 }
 
 .bingo-header-circle {
-    width: 100%;
     aspect-ratio: 1;
-    max-width: 32px;
+    max-width: 24px;
     margin: 0 auto;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 0.85em;
+    font-size: clamp(0.55em, 2vw, 0.8em);
     color: #fff;
 }
 
@@ -325,18 +324,19 @@ body {
 .master-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(15, 1fr);
-    gap: 2px;
+    grid-template-rows: repeat(15, minmax(0, 1fr));
+    gap: 1px;
     flex: 1;
-    min-height: 200px;
+    min-height: 0;
+    overflow: hidden;
 }
 
 .master-cell {
     background-color: #f5f5f5;
     color: #333;
-    border-radius: 3px;
+    border-radius: 2px;
     text-align: center;
-    font-size: 0.7em;
+    font-size: clamp(0.45em, 1.8vw, 0.7em);
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -349,18 +349,16 @@ body {
     font-weight: bold;
 }
 
-/* Right Column - Call Display, History, Player Card, Bingo Button */
+/* Right Column - Call + Player Card */
 .right-column {
-    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    overflow-y: auto;
-    min-width: 0;
-    height: 100%;
+    gap: 6px;
+    min-height: 0;
+    overflow: hidden;
 }
 
-/* Call Display */
+/* Call Display - Compact */
 .call-display-section {
     display: flex;
     justify-content: center;
@@ -368,10 +366,10 @@ body {
 }
 
 .current-call-circle {
-    width: 70px;
-    height: 70px;
+    width: clamp(45px, 12vw, 65px);
+    height: clamp(45px, 12vw, 65px);
     background-color: transparent;
-    border: 4px solid #3498db;
+    border: 3px solid #3498db;
     border-radius: 50%;
     display: flex;
     flex-direction: column;
@@ -381,34 +379,34 @@ body {
 }
 
 .call-letter {
-    font-size: 0.85em;
+    font-size: clamp(0.6em, 2vw, 0.85em);
     font-weight: bold;
 }
 
 .call-number {
-    font-size: 1.3em;
+    font-size: clamp(0.9em, 3vw, 1.3em);
     font-weight: bold;
 }
 
-/* Call History */
+/* Call History - Compact */
 .call-history {
     display: flex;
-    gap: 6px;
+    gap: 4px;
     flex-wrap: wrap;
     justify-content: center;
     flex-shrink: 0;
-    padding: 5px 0;
+    padding: 2px 0;
 }
 
 .history-item {
-    width: 36px;
-    height: 36px;
+    width: clamp(26px, 7vw, 34px);
+    height: clamp(26px, 7vw, 34px);
     border-radius: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 0.6em;
+    font-size: clamp(0.4em, 1.5vw, 0.6em);
     font-weight: bold;
     color: #fff;
 }
@@ -419,22 +417,27 @@ body {
 .history-item.g-call { background-color: #27ae60; }
 .history-item.o-call { background-color: #e67e22; }
 
-/* Player Card Section */
+/* Player Card Section - Fills remaining space */
 .player-card-section {
     background-color: #2a2a3a;
-    border-radius: 10px;
-    padding: 10px;
+    border-radius: 8px;
+    padding: 6px;
     position: relative;
-    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
 }
 
 .your-cards-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
-    font-size: 0.9em;
+    margin-bottom: 4px;
+    font-size: clamp(0.7em, 2vw, 0.85em);
     color: #ccc;
+    flex-shrink: 0;
 }
 
 .card-count {
@@ -453,64 +456,72 @@ body {
     display: none;
     align-items: center;
     justify-content: center;
-    font-size: 1.3em;
+    font-size: 1.2em;
     font-weight: bold;
-    border-radius: 10px;
+    border-radius: 8px;
     z-index: 10;
 }
 
 .player-card-wrapper {
     background-color: #3a3a4a;
-    border-radius: 8px;
-    padding: 8px;
+    border-radius: 6px;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
 }
 
 .card-number-title {
     text-align: center;
     font-weight: bold;
     color: #fff;
-    margin-bottom: 6px;
-    font-size: 0.85em;
+    margin-bottom: 3px;
+    font-size: clamp(0.65em, 2vw, 0.8em);
+    flex-shrink: 0;
 }
 
 .player-bingo-headers {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 4px;
-    margin-bottom: 4px;
+    gap: 3px;
+    margin-bottom: 3px;
+    flex-shrink: 0;
 }
 
 .player-header-circle {
-    width: 28px;
-    height: 28px;
+    width: clamp(18px, 5vw, 26px);
+    height: clamp(18px, 5vw, 26px);
     margin: 0 auto;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 0.85em;
+    font-size: clamp(0.55em, 1.8vw, 0.8em);
     color: #fff;
 }
 
 .bingo-card-player {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    gap: 3px;
+    grid-template-rows: repeat(5, minmax(0, 1fr));
+    gap: 2px;
+    flex: 1;
+    min-height: 0;
 }
 
 .player-cell {
     background-color: #555;
     color: #fff;
-    border-radius: 4px;
+    border-radius: 3px;
     text-align: center;
-    font-size: 1em;
+    font-size: clamp(0.7em, 2.5vw, 1em);
     font-weight: 600;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 4px;
     cursor: pointer;
     transition: all 0.2s;
 }
@@ -531,38 +542,40 @@ body {
     cursor: default;
 }
 
-/* Bingo Button Section */
+/* Bingo Button - Compact */
 .bingo-button-section {
-    margin-top: 10px;
+    margin-top: auto;
+    padding-top: 4px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 3px;
+    flex-shrink: 0;
 }
 
 .bingo-main-btn {
     width: 100%;
-    padding: 10px;
-    font-size: 1.1em;
+    padding: clamp(6px, 2vw, 10px);
+    font-size: clamp(0.9em, 3vw, 1.1em);
     font-weight: bold;
     color: #333;
     background-color: var(--color-accent);
     border: none;
-    border-radius: 20px;
+    border-radius: 15px;
     cursor: pointer;
 }
 
 .connection-status {
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: 0.8em;
+    gap: 4px;
+    font-size: clamp(0.6em, 2vw, 0.75em);
     color: #aaa;
 }
 
 .status-dot {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
 }
 
@@ -574,99 +587,32 @@ body {
     background-color: #e74c3c;
 }
 
-/* Game Footer */
+/* Game Footer - Compact */
 .game-footer {
     display: flex;
-    gap: 10px;
-    padding: 10px;
+    gap: 8px;
+    padding: 6px;
     background-color: #1a1a2e;
     flex-shrink: 0;
+    height: 50px;
 }
 
 .footer-action-btn {
     flex: 1;
-    padding: 12px;
-    font-size: 1.1em;
+    padding: clamp(8px, 2vw, 12px);
+    font-size: clamp(0.9em, 2.5vw, 1.1em);
     font-weight: bold;
     color: #333;
     background-color: var(--color-accent);
     border: none;
-    border-radius: 25px;
+    border-radius: 20px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .btn-icon {
-    font-size: 1.2em;
-}
-
-/* ================================================== */
-/* ===== Mobile Responsive - Stack Vertically ===== */
-/* ================================================== */
-
-@media (max-width: 500px) {
-    .game-content-grid {
-        flex-direction: column;
-        height: auto;
-        overflow-y: auto;
-    }
-    
-    .left-column {
-        order: 2;
-        height: auto;
-        min-height: 300px;
-    }
-    
-    .right-column {
-        order: 1;
-        height: auto;
-        overflow: visible;
-    }
-    
-    .master-grid-section {
-        height: auto;
-        min-height: 280px;
-    }
-    
-    .master-grid {
-        min-height: 250px;
-    }
-    
-    .master-cell {
-        font-size: 0.65em;
-    }
-    
-    .bingo-header-circle {
-        max-width: 26px;
-        font-size: 0.75em;
-    }
-    
-    .player-header-circle {
-        width: 24px;
-        height: 24px;
-        font-size: 0.75em;
-    }
-    
-    .player-cell {
-        font-size: 0.9em;
-        padding: 6px 3px;
-    }
-    
-    .current-call-circle {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .call-number {
-        font-size: 1.1em;
-    }
-    
-    .history-item {
-        width: 32px;
-        height: 32px;
-        font-size: 0.55em;
-    }
+    font-size: 1.1em;
 }
