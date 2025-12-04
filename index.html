@@ -64,53 +64,84 @@
 
         <div id="game-screen" style="display: none;">
             
-            <div class="game-area-grid">
+            <div class="game-header">
+                <span class="close-btn">×</span>
+                <span class="game-title">Chewatabingo</span>
+                <span class="header-icons">
+                    <span class="dropdown-icon">⌄</span>
+                    <span class="menu-icon">⋮</span>
+                </span>
+            </div>
+
+            <div class="game-main-content">
                 
-                <div class="left-main-area">
-                    
-                    <div class="top-round-btn">
-                        አዲስ ካርድ
-                    </div>
-                    
-                    <div class="large-block master-grid-container">
+                <div class="game-top-row">
+                    <div class="master-grid-section">
+                        <div class="bingo-headers">
+                            <div class="bingo-header-circle b-header">B</div>
+                            <div class="bingo-header-circle i-header">I</div>
+                            <div class="bingo-header-circle n-header">N</div>
+                            <div class="bingo-header-circle g-header">G</div>
+                            <div class="bingo-header-circle o-header">O</div>
+                        </div>
                         <div id="master-grid" class="master-grid">
-                            </div>
+                        </div>
                     </div>
 
-                    <div class="mid-round-btn" id="refresh-btn">
-                        Refresh
-                    </div>
-                </div>
-
-                <div class="right-main-area">
-                    
-                    <div class="current-call-display">
-                        <div class="top-call-circle" id="current-call">
-                            Call
+                    <div class="call-display-section">
+                        <div class="current-call-circle" id="current-call">
+                            <span class="call-letter" id="call-letter"></span>
+                            <span class="call-number" id="call-number">--</span>
                         </div>
                         
                         <div class="call-history" id="call-history">
-                            <span class="history-item">-</span>
-                            <span class="history-item">-</span>
-                            <span class="history-item">-</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="large-block player-card-container">
-                        <div id="watch-only-placard" class="watch-only-placard">
-                            WATCH ONLY
-                        </div>
-                        <div id="player-bingo-card" class="bingo-card-player">
-                            </div>
-                    </div>
-
-                    <div class="bottom-btn bingo-btn-placeholder" id="bingo-btn">
-                        BINGO
+                <div class="player-card-section">
+                    <div class="your-cards-header">
+                        <span>Your Cards</span>
+                        <span class="card-count">1</span>
                     </div>
                     
+                    <div id="watch-only-placard" class="watch-only-placard">
+                        WATCH ONLY
+                    </div>
+                    
+                    <div class="player-card-wrapper">
+                        <div class="card-number-title" id="card-number-title">Card Number --</div>
+                        <div class="player-bingo-headers">
+                            <div class="player-header-circle b-header">B</div>
+                            <div class="player-header-circle i-header">I</div>
+                            <div class="player-header-circle n-header">N</div>
+                            <div class="player-header-circle g-header">G</div>
+                            <div class="player-header-circle o-header">O</div>
+                        </div>
+                        <div id="player-bingo-card" class="bingo-card-player">
+                        </div>
+                    </div>
+                    
+                    <div class="bingo-button-section">
+                        <button class="bingo-main-btn" id="bingo-btn">Bingo</button>
+                        <div class="connection-status">
+                            <span class="status-dot connected"></span>
+                            <span>Connected</span>
+                        </div>
+                    </div>
                 </div>
-                
+
             </div>
+
+            <div class="game-footer">
+                <button class="footer-action-btn exit-btn" id="exit-btn">
+                    <span class="btn-icon">↪</span> Exit
+                </button>
+                <button class="footer-action-btn refresh-btn" id="refresh-btn">
+                    <span class="btn-icon">↻</span> Refresh
+                </button>
+            </div>
+            
         </div>
         
     </div>
