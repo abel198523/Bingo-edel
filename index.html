@@ -1,1 +1,121 @@
-hdjsvhsi
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chewatabingo Mini App</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <div class="main-wrapper">
+        
+        <div id="landing-screen">
+            <div class="welcome-box">
+                <h1>እንኳን ደህና መጡ</h1>
+                <h2>ወደ ችዋታቢንጎ</h2>
+                
+                <div class="stake-selection">
+                    <p>የውርርድ መጠን ይምረጡ</p>
+                    <button class="stake-btn active-stake" data-stake="10">Stake 10</button>
+                    <button class="stake-btn" data-stake="20">Stake 20</button>
+                    <button class="stake-btn" data-stake="50">Stake 50</button>
+                </div>
+
+                <button id="start-selection-btn" class="play-btn">
+                    ▷ Play 10 ETB
+                </button>
+            </div>
+        </div>
+
+        <div id="selection-screen" style="display: none;">
+            
+            <div class="selection-header">
+                <div class="header-info">
+                    <span class="label">Main Wallet</span>
+                    <span class="value" id="main-wallet-value">0</span>
+                </div>
+                <div class="header-info">
+                    <span class="label">Stake</span>
+                    <span class="value" id="current-stake">10</span>
+                </div>
+                <div class="header-info time-counter">
+                    <span class="time-value" id="time-left">45s</span>
+                </div>
+            </div>
+
+            <div id="card-selection-grid" class="card-selection-grid">
+                </div>
+            
+            <div id="confirmation-status" class="confirmation-status">ካርድ ይምረጡና አረጋግጡ</div>
+            
+            <button id="confirm-card-btn" class="selection-action-btn" disabled>
+                ካርዱን አረጋግጥ
+            </button>
+            
+            <p style="text-align: center; font-size: 0.8em; color: #ccc; margin-top: 10px;">ካርድዎን ለመምረጥ ጊዜው እየሮጠ ነው!</p>
+
+            <div class="selection-footer">
+                <div class="footer-btn active" data-target="game">Game</div>
+                <div class="footer-btn" data-target="wallet">Wallet</div>
+                <div class="footer-btn" data-target="profile">Profile</div>
+            </div>
+            
+        </div>
+
+        <div id="game-screen" style="display: none;">
+            
+            <div class="game-area-grid">
+                
+                <div class="left-main-area">
+                    
+                    <div class="top-round-btn">
+                        አዲስ ካርድ
+                    </div>
+                    
+                    <div class="large-block master-grid-container">
+                        <div id="master-grid" class="master-grid">
+                            </div>
+                    </div>
+
+                    <div class="mid-round-btn" id="refresh-btn">
+                        Refresh
+                    </div>
+                </div>
+
+                <div class="right-main-area">
+                    
+                    <div class="current-call-display">
+                        <div class="top-call-circle" id="current-call">
+                            Call
+                        </div>
+                        
+                        <div class="call-history" id="call-history">
+                            <span class="history-item">-</span>
+                            <span class="history-item">-</span>
+                            <span class="history-item">-</span>
+                        </div>
+                    </div>
+
+                    <div class="large-block player-card-container">
+                        <div id="watch-only-placard" class="watch-only-placard">
+                            WATCH ONLY
+                        </div>
+                        <div id="player-bingo-card" class="bingo-card-player">
+                            </div>
+                    </div>
+
+                    <div class="bottom-btn bingo-btn-placeholder" id="bingo-btn">
+                        BINGO
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
