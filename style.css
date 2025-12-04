@@ -224,9 +224,10 @@ body {
 #game-screen {
     display: none;
     flex-direction: column;
-    flex-grow: 1;
+    flex: 1;
     background-color: #1a1a2e;
     overflow: hidden;
+    height: 100%;
 }
 
 /* Game Header */
@@ -265,21 +266,22 @@ body {
 
 /* Two Column Game Layout */
 .game-content-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: row;
     gap: 10px;
-    flex-grow: 1;
+    flex: 1;
     padding: 10px;
     overflow: hidden;
-    min-height: 0;
+    height: calc(100% - 110px);
 }
 
 /* Left Column - Master Grid */
 .left-column {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    min-height: 0;
+    min-width: 0;
+    height: 100%;
 }
 
 .master-grid-section {
@@ -288,9 +290,8 @@ body {
     background-color: #2a2a3a;
     border-radius: 10px;
     padding: 8px;
-    flex-grow: 1;
+    height: 100%;
     overflow: hidden;
-    min-height: 0;
 }
 
 .bingo-headers {
@@ -326,8 +327,8 @@ body {
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(15, 1fr);
     gap: 2px;
-    flex-grow: 1;
-    min-height: 0;
+    flex: 1;
+    min-height: 200px;
 }
 
 .master-cell {
@@ -350,11 +351,13 @@ body {
 
 /* Right Column - Call Display, History, Player Card, Bingo Button */
 .right-column {
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 10px;
     overflow-y: auto;
-    min-height: 0;
+    min-width: 0;
+    height: 100%;
 }
 
 /* Call Display */
@@ -606,22 +609,30 @@ body {
 
 @media (max-width: 500px) {
     .game-content-grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto 1fr;
+        flex-direction: column;
+        height: auto;
         overflow-y: auto;
     }
     
     .left-column {
         order: 2;
+        height: auto;
+        min-height: 300px;
     }
     
     .right-column {
         order: 1;
+        height: auto;
         overflow: visible;
     }
     
     .master-grid-section {
+        height: auto;
         min-height: 280px;
+    }
+    
+    .master-grid {
+        min-height: 250px;
     }
     
     .master-cell {

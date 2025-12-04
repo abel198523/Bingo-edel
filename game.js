@@ -484,7 +484,19 @@ function setupEventListeners() {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
-    switchScreen(LANDING_SCREEN); 
     setupEventListeners();
     document.getElementById('start-selection-btn').textContent = `▷ Play ${currentStake} ETB`;
+    
+    // Check for test mode - add #game to URL to directly view game screen
+    if (window.location.hash === '#game') {
+        hasPlayerCard = true;
+        selectedCardId = 44;
+        isCardConfirmed = true;
+        switchScreen(GAME_SCREEN);
+        initializeMasterGrid();
+        generatePlayerCard(44);
+        startAutoCall();
+    } else {
+        switchScreen(LANDING_SCREEN);
+    }
 });
